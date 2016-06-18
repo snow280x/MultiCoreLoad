@@ -11,6 +11,7 @@ namespace MultiCoreLoad
     {
         private PerformanceCounter Parking;
         private PerformanceCounter Usage;
+        private PerformanceCounter Freqency;
 
         public Core(int index)
         {
@@ -20,6 +21,8 @@ namespace MultiCoreLoad
                 Console.WriteLine($"Parking:{Parking.NextValue()}");
                 Usage = new PerformanceCounter("Processor Information", "% Processor Time", $"0,{index}");
                 Console.WriteLine($"Usage:{Usage.NextValue()}");
+                Freqency = new PerformanceCounter("Processor Information", "% Processor Performance", $"0,{index}");
+                Console.WriteLine($"Frequency:{Freqency.NextValue()}");
             }
             catch (Exception ex)
             {
@@ -35,6 +38,11 @@ namespace MultiCoreLoad
         public double Load()
         {
             return Usage.NextValue();
+        }
+
+        public double Freq()
+        {
+            return Freqency.NextValue();
         }
     }
 }

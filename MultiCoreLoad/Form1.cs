@@ -14,13 +14,18 @@ namespace MultiCoreLoad
 {
     public partial class Form1 : Form
     {
+        const int freqIndex = 0;
+        const int usageStartIndex = freqIndex + 1;
         int CoreCount;
         Core[] Cores;
         PictureBox[] Graphs;
         int GraphWidth = 100;
         int GraphHeight = 5;
+        Color normal = Color.FromArgb(64, 64, 255);
+        Color boost = Color.FromArgb(255, 0, 0);
         Color active = Color.FromArgb(64, 255, 0);
         Color park = Color.FromArgb(32, 128, 0);
+        double maxfreq = 100;
 
         public Form1()
         {
@@ -33,17 +38,31 @@ namespace MultiCoreLoad
             {
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
-                Graphs = new PictureBox[CoreCount];
+                Graphs = new PictureBox[CoreCount + 1];
 
-                for (int i = 0; i < CoreCount; i++)
+                for (int c = 0; c < CoreCount; c++)
                 {
-                    Cores[i] = new Core(i);
+                    Cores[c] = new Core(c);
+                }
+
+                for (int i = 0; i < CoreCount + usageStartIndex; i++)
+                {
                     PictureBox pic = new PictureBox();
+
                     pic.Width = GraphWidth;
                     pic.Height = GraphHeight;
                     pic.Top = pic.Height * i + i;
                     pic.Left = 0;
-                    pic.BackColor = Color.FromArgb(64, 255, 0);
+
+                    if (i == freqIndex)
+                    {
+                        pic.BackColor = normal;
+                    }
+                    else
+                    {
+                        pic.BackColor = active;
+                    }
+
                     Graphs[i] = pic;
                 }
 
@@ -88,6 +107,7 @@ namespace MultiCoreLoad
         {
             double[] usage = new double[CoreCount];
             bool[] parked = new bool[CoreCount];
+            double freq = Cores[0].Freq();
 
             Parallel.For(0, CoreCount, id =>
             {
@@ -95,17 +115,27 @@ namespace MultiCoreLoad
                 parked[id] = Cores[id].Parked();
             });
 
-            for (int i = 0; i < CoreCount; i++)
+            for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
-                Graphs[i].Width = (int)(GraphWidth / 100 * usage[i]);
-                //Graphs[i].Width = (int)(GraphWidth / 10 * (int)(Math.Ceiling(usage[i]) / 10));
-                Graphs[i].BackColor = (!parked[i]) ? active : park;
+                if (i == freqIndex)
+                {
+                    maxfreq = Math.Max(maxfreq, freq);
+                    Graphs[i].Width = (int)(GraphWidth / maxfreq * freq);
+                    Graphs[i].BackColor = (freq >= 100) ? boost : normal;
+                    Console.WriteLine($"{nameof(freq)}:{freq}");
+                }
+                else
+                {
+                    Graphs[i].Width = (int)(GraphWidth / 100 * usage[i - usageStartIndex]);
+                    Graphs[i].BackColor = (!parked[i - usageStartIndex]) ? active : park;
+                    Console.WriteLine($"{nameof(usage)}[{i - usageStartIndex}]:{usage[i - usageStartIndex]}");
+                }
             }
         }
 
         private void LocationSet()
         {
-            if (Height != (GraphHeight + 1) * CoreCount || Width != GraphWidth || Top != Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top || Left != Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left)
+            if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) || Width != GraphWidth || Top != Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top || Left != Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left)
             {
                 int oldTop = Top;
                 int oldLeft = Left;
@@ -115,7 +145,7 @@ namespace MultiCoreLoad
 
                 //TopLevel = true;
                 //TopMost = true;
-                Height = (GraphHeight + 1) * CoreCount;
+                Height = (GraphHeight + 1) * (CoreCount + usageStartIndex);
                 Width = GraphWidth;
                 Top = Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top;
                 Left = Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left;

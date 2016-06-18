@@ -15,3 +15,12 @@ D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.pdb
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Form1.resources
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Properties.Resources.resources
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.GenerateResource.Cache
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe.config
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.exe
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.pdb
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.pdb
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csprojResolveAssemblyReference.cache
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Form1.resources
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Properties.Resources.resources
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.GenerateResource.Cache
