@@ -22,7 +22,7 @@ namespace MultiCoreLoad
         PictureBox freqBackground;
         int GraphWidth = 100;
         int GraphHeight = 5;
-        Color normal = Color.FromArgb(255, 128, 0);
+        Color normal = Color.FromArgb(0, 64, 255);
         Color boost = Color.FromArgb(255, 32, 32);
         Color freqFrame = Color.FromArgb(128, 128, 128);
         Color active = Color.FromArgb(64, 255, 0);

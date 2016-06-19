@@ -4,7 +4,7 @@
   <description asmv2:publisher="MultiCoreLoad" asmv2:product="MultiCoreLoad" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
     <dependentAssembly dependencyType="install" codebase="MultiCoreLoad.exe.manifest" size="4060">
@@ -14,7 +14,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dZUDBT3JtQwLJN9p5256QooHt74lrDJ2iFH3O7sRBNk=</dsig:DigestValue>
+        <dsig:DigestValue>hNOY/4iTixBGLjSeQWCBGN/i4JAgttOjwJE5/TQVxSQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

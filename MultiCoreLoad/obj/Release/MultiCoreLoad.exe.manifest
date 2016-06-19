@@ -50,17 +50,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2F2y56W9ZrLfvg7rpEff9HxTgzF+PM5/8BmqYk8UOW0=</dsig:DigestValue>
+        <dsig:DigestValue>5akiV03vY2J6WgNEgXQQENMTCYpiDyLTTG0eS5Pmkew=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="MultiCoreLoad.exe.config" size="189">
+  <file name="MultiCoreLoad.exe.config" size="186">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+      <dsig:DigestValue>1NgAxCSw4ibTXzWVy7D6Rw60Qih4Dn37KvGhG5Ora/s=</dsig:DigestValue>
     </hash>
   </file>
   <file name="MultiCoreLoad.ico" size="67646">
