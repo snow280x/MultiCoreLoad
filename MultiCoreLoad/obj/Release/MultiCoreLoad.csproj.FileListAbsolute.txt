@@ -26,3 +26,7 @@ C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.m
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.application
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe.manifest
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.application
+D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.manifest
+D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.application
+D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe.manifest
+D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.application

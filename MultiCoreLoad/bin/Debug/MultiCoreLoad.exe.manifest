@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MultiCoreLoad.exe" size="217544">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MultiCoreLoad.exe" size="218056">
       <assemblyIdentity name="MultiCoreLoad" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>psdSIp2MdiApsjmObr97b0xZNDNG/Ee4Y3Gz5727uts=</dsig:DigestValue>
+        <dsig:DigestValue>aAZQ2zFkNmHxZwaXXKt7XZe/IhzoHMUUHbq9uPFKGxI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
