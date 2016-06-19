@@ -19,13 +19,16 @@ namespace MultiCoreLoad
         int CoreCount;
         Core[] Cores;
         PictureBox[] Graphs;
+        PictureBox freqBackground;
         int GraphWidth = 100;
         int GraphHeight = 5;
-        Color normal = Color.FromArgb(64, 64, 255);
-        Color boost = Color.FromArgb(255, 0, 0);
+        Color normal = Color.FromArgb(64, 128, 255);
+        Color boost = Color.FromArgb(255, 64, 64);
+        Color freqFrame = Color.FromArgb(0, 0, 128);
         Color active = Color.FromArgb(64, 255, 0);
         Color park = Color.FromArgb(32, 128, 0);
         double maxfreq = 100;
+        int maxNormalfreq = 99;
 
         public Form1()
         {
@@ -56,6 +59,12 @@ namespace MultiCoreLoad
 
                     if (i == freqIndex)
                     {
+                        freqBackground = new PictureBox();
+                        freqBackground.Width = pic.Width;
+                        freqBackground.Height = pic.Height;
+                        freqBackground.Top = pic.Top;
+                        freqBackground.Left = pic.Left;
+                        freqBackground.BackColor = freqFrame;
                         pic.BackColor = normal;
                     }
                     else
@@ -68,6 +77,7 @@ namespace MultiCoreLoad
 
                 SuspendLayout();
                 Controls.AddRange(Graphs);
+                Controls.Add(freqBackground);
                 ResumeLayout(false);
 
                 BackColor = Color.FromArgb(32, 32, 32);
@@ -120,8 +130,9 @@ namespace MultiCoreLoad
                 if (i == freqIndex)
                 {
                     maxfreq = Math.Max(maxfreq, freq);
+                    freqBackground.Width = (int)(GraphWidth / maxfreq * 100);
                     Graphs[i].Width = (int)(GraphWidth / maxfreq * freq);
-                    Graphs[i].BackColor = (freq >= 100) ? boost : normal;
+                    Graphs[i].BackColor = (freq >= maxNormalfreq) ? boost : normal;
                     Console.WriteLine($"{nameof(freq)}:{freq}");
                 }
                 else

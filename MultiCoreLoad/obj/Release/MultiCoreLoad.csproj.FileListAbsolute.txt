@@ -22,3 +22,7 @@ C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.pdb
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Form1.resources
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Properties.Resources.resources
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.GenerateResource.Cache
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.manifest
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.application
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe.manifest
+C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.application
