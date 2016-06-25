@@ -130,16 +130,16 @@ namespace MultiCoreLoad
                 if (i == freqIndex)
                 {
                     maxfreq = Math.Max(maxfreq, freq);
-                    freqBackground.Width = (int)(GraphWidth / maxfreq * 100);
-                    Graphs[i].Width = (int)(GraphWidth / maxfreq * freq);
+                    freqBackground.Width = (int)Math.Round(GraphWidth / maxfreq * 100);
+                    Graphs[i].Width = (int)Math.Round(GraphWidth / maxfreq * freq);
                     Graphs[i].BackColor = (freq >= maxNormalfreq) ? boost : normal;
-                    Console.WriteLine($"{nameof(freq)}:{freq}");
+                    Console.WriteLine($"{freqBackground.Width} {Graphs[i].Width}");
                 }
                 else
                 {
-                    Graphs[i].Width = (int)(GraphWidth / 100 * usage[i - usageStartIndex]);
+                    Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
                     Graphs[i].BackColor = (!parked[i - usageStartIndex]) ? active : park;
-                    Console.WriteLine($"{nameof(usage)}[{i - usageStartIndex}]:{usage[i - usageStartIndex]}");
+                    Console.WriteLine($"{nameof(usage)}[{i - usageStartIndex}]:{Graphs[i].Width}");
                 }
             }
         }
