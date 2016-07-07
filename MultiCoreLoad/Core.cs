@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiCoreLoad
 {
-    class Core
+    class Core : IDisposable
     {
         private PerformanceCounter Parking;
         private PerformanceCounter Usage;
@@ -43,6 +43,13 @@ namespace MultiCoreLoad
         public double Freq()
         {
             return Freqency.NextValue();
+        }
+
+        public void Dispose()
+        {
+            Parking.Dispose();
+            Usage.Dispose();
+            Freqency.Dispose();
         }
     }
 }

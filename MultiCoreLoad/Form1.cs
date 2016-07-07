@@ -37,11 +37,28 @@ namespace MultiCoreLoad
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            init();
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x00000020;
+                return cp;
+            }
+        }
+
+        private void init()
+        {
             try
             {
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
+                maxfreq = 100;
+                maxNormalfreq = 99;
 
                 for (int c = 0; c < CoreCount; c++)
                 {
@@ -97,16 +114,6 @@ namespace MultiCoreLoad
             }
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x00000020;
-                return cp;
-            }
-        }
-
         private void Worker_Tick(object sender, EventArgs e)
         {
             DoWork();
@@ -146,6 +153,11 @@ namespace MultiCoreLoad
 
         private void LocationSet()
         {
+            Console.WriteLine($"{nameof(TopLevel)}:{TopLevel = true}");
+            Console.WriteLine($"{nameof(TopMost)}:{TopMost = true}");
+            TopLevel = true;
+            TopMost = true;
+
             if (WindowState != FormWindowState.Normal ||
                 Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
                 Width != GraphWidth ||
@@ -155,11 +167,6 @@ namespace MultiCoreLoad
                 int oldTop = Top;
                 int oldLeft = Left;
 
-                Console.WriteLine($"{nameof(TopLevel)}:{TopLevel = true}");
-                Console.WriteLine($"{nameof(TopMost)}:{TopMost = true}");
-
-                //TopLevel = true;
-                //TopMost = true;
                 WindowState = FormWindowState.Normal;
                 Height = (GraphHeight + 1) * (CoreCount + usageStartIndex);
                 Width = GraphWidth;
@@ -179,6 +186,23 @@ namespace MultiCoreLoad
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             Activate();
+        }
+
+        private void RestartMenuItem_Click(object sender, EventArgs e)
+        {
+            Worker.Enabled = false;
+            Thread.Sleep(100);
+
+            SuspendLayout();
+            foreach (Control ctrl in Graphs)
+            {
+                Controls.Remove(ctrl);
+            }
+            Controls.Remove(freqBackground);
+            ResumeLayout(false);
+            Thread.Sleep(100);
+
+            init();
         }
     }
 }
