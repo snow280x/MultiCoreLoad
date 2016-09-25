@@ -133,7 +133,7 @@ namespace MultiCoreLoad
                 freq[id] = Cores[id].Freq();
             });
 
-            double avefreq = freq.Average();
+            double avefreq = freq.Max();
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
