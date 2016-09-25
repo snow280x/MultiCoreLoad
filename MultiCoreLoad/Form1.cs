@@ -58,7 +58,7 @@ namespace MultiCoreLoad
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
                 maxfreq = 100;
-                maxNormalfreq = 99;
+                maxNormalfreq = 100;
 
                 for (int c = 0; c < CoreCount; c++)
                 {
@@ -124,22 +124,25 @@ namespace MultiCoreLoad
         {
             double[] usage = new double[CoreCount];
             bool[] parked = new bool[CoreCount];
-            double freq = Cores[0].Freq();
+            double[] freq = new double[CoreCount];
 
             Parallel.For(0, CoreCount, id =>
             {
                 usage[id] = Cores[id].Load();
                 parked[id] = Cores[id].Parked();
+                freq[id] = Cores[id].Freq();
             });
+
+            double avefreq = freq.Average();
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
                 if (i == freqIndex)
                 {
-                    maxfreq = Math.Max(maxfreq, freq);
+                    maxfreq = Math.Max(maxfreq, avefreq);
                     freqBackground.Width = (int)Math.Round(GraphWidth / maxfreq * 100);
-                    Graphs[i].Width = (int)Math.Round(GraphWidth / maxfreq * freq);
-                    Graphs[i].BackColor = (freq >= maxNormalfreq) ? boost : normal;
+                    Graphs[i].Width = (int)Math.Round(GraphWidth / maxfreq * avefreq);
+                    Graphs[i].BackColor = (avefreq >= maxNormalfreq) ? boost : normal;
                     Console.WriteLine($"{freqBackground.Width} {Graphs[i].Width}");
                 }
                 else
