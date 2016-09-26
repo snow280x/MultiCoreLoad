@@ -131,8 +131,8 @@ namespace MultiCoreLoad
                 freq[id] = Cores[id].Freq();
             });
 
-            double avefreq = freq.Max();
-            Console.WriteLine(Math.Round(avefreq));
+            double avefreq = freq.Average();
+            Console.WriteLine(avefreq);
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
@@ -141,22 +141,18 @@ namespace MultiCoreLoad
                     maxfreq = Math.Max(maxfreq, avefreq);
                     freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
                     Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
-                    //Console.WriteLine($"{freqBackground.Width} {Graphs[i].Width}");
                     Console.WriteLine(freqBackground.Width + Graphs[i].Width);
                 }
                 else
                 {
                     Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
                     Graphs[i].BackColor = (!parked[i - usageStartIndex]) ? active : park;
-                    //Console.WriteLine($"{nameof(usage)}[{i - usageStartIndex}]:{Graphs[i].Width}");
                 }
             }
         }
 
         private void LocationSet()
         {
-            //Console.WriteLine($"{nameof(TopLevel)}:{TopLevel = true}");
-            //Console.WriteLine($"{nameof(TopMost)}:{TopMost = true}");
             TopLevel = true;
             TopMost = true;
 

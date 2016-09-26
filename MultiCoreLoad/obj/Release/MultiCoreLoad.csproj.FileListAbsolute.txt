@@ -40,3 +40,4 @@ E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Form1.resources
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Properties.Resources.resources
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.GenerateResource.Cache
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csprojResolveAssemblyReference.cache
