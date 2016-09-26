@@ -28,7 +28,6 @@ namespace MultiCoreLoad
         Color active = Color.FromArgb(64, 255, 0);
         Color park = Color.FromArgb(32, 128, 0);
         double maxfreq = 100;
-        int maxNormalfreq = 99;
 
         public Form1()
         {
@@ -58,7 +57,6 @@ namespace MultiCoreLoad
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
                 maxfreq = 100;
-                maxNormalfreq = 100;
 
                 for (int c = 0; c < CoreCount; c++)
                 {
@@ -81,8 +79,8 @@ namespace MultiCoreLoad
                         freqBackground.Height = pic.Height;
                         freqBackground.Top = pic.Top;
                         freqBackground.Left = pic.Left;
-                        freqBackground.BackColor = freqFrame;
-                        pic.BackColor = normal;
+                        freqBackground.BackColor = normal;
+                        pic.BackColor = boost;
                     }
                     else
                     {
@@ -134,30 +132,31 @@ namespace MultiCoreLoad
             });
 
             double avefreq = freq.Max();
+            Console.WriteLine(Math.Round(avefreq));
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
                 if (i == freqIndex)
                 {
                     maxfreq = Math.Max(maxfreq, avefreq);
-                    freqBackground.Width = (int)Math.Round(GraphWidth / maxfreq * 100);
-                    Graphs[i].Width = (int)Math.Round(GraphWidth / maxfreq * avefreq);
-                    Graphs[i].BackColor = (avefreq >= maxNormalfreq) ? boost : normal;
-                    Console.WriteLine($"{freqBackground.Width} {Graphs[i].Width}");
+                    freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
+                    Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
+                    //Console.WriteLine($"{freqBackground.Width} {Graphs[i].Width}");
+                    Console.WriteLine(freqBackground.Width + Graphs[i].Width);
                 }
                 else
                 {
                     Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
                     Graphs[i].BackColor = (!parked[i - usageStartIndex]) ? active : park;
-                    Console.WriteLine($"{nameof(usage)}[{i - usageStartIndex}]:{Graphs[i].Width}");
+                    //Console.WriteLine($"{nameof(usage)}[{i - usageStartIndex}]:{Graphs[i].Width}");
                 }
             }
         }
 
         private void LocationSet()
         {
-            Console.WriteLine($"{nameof(TopLevel)}:{TopLevel = true}");
-            Console.WriteLine($"{nameof(TopMost)}:{TopMost = true}");
+            //Console.WriteLine($"{nameof(TopLevel)}:{TopLevel = true}");
+            //Console.WriteLine($"{nameof(TopMost)}:{TopMost = true}");
             TopLevel = true;
             TopMost = true;
 
