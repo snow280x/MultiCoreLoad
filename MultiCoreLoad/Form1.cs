@@ -53,6 +53,12 @@ namespace MultiCoreLoad
         {
             try
             {
+                if (Screen.PrimaryScreen.WorkingArea.Width > 1920)
+                {
+                    GraphWidth = 200;
+                    GraphHeight = 10;
+                }
+
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
@@ -95,7 +101,6 @@ namespace MultiCoreLoad
                 Controls.Add(freqBackground);
                 ResumeLayout(false);
 
-                BackColor = Color.FromArgb(32, 32, 32);
                 ShowInTaskbar = false;
                 LocationSet();
 
@@ -181,11 +186,6 @@ namespace MultiCoreLoad
             Close();
         }
 
-        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
-        {
-            Activate();
-        }
-
         private void RestartMenuItem_Click(object sender, EventArgs e)
         {
             Worker.Enabled = false;
@@ -201,6 +201,11 @@ namespace MultiCoreLoad
             Thread.Sleep(100);
 
             init();
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Activate();
         }
     }
 }
