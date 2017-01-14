@@ -35,8 +35,6 @@ E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.pdb
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.pdb
-E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.CodeAnalysisLog.xml
-E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.lastcodeanalysissucceeded
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Form1.resources
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Properties.Resources.resources
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.GenerateResource.Cache
