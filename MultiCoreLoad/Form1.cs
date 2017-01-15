@@ -137,7 +137,7 @@ namespace MultiCoreLoad
             });
 
             double avefreq = freq.Average();
-            Console.WriteLine(avefreq);
+            Console.WriteLine(Math.Round(avefreq));
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
@@ -146,7 +146,6 @@ namespace MultiCoreLoad
                     maxfreq = Math.Max(maxfreq, avefreq);
                     freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
                     Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
-                    Console.WriteLine(freqBackground.Width + Graphs[i].Width);
                 }
                 else
                 {

@@ -78,14 +78,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(50, 50);
+            this.ClientSize = new System.Drawing.Size(232, 50);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Opacity = 0.6D;
+            this.Opacity = 0.4D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MultiCoreLoad";
             this.TopMost = true;
