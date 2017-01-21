@@ -53,11 +53,11 @@ namespace MultiCoreLoad
         {
             try
             {
-                if (Screen.PrimaryScreen.WorkingArea.Width > 1920)
-                {
-                    GraphWidth = 200;
-                    GraphHeight = 10;
-                }
+                //if (Screen.PrimaryScreen.WorkingArea.Width > 1920)
+                //{
+                //    GraphWidth = 200;
+                //    GraphHeight = 10;
+                //}
 
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
@@ -137,7 +137,6 @@ namespace MultiCoreLoad
             });
 
             double avefreq = freq.Average();
-            Console.WriteLine(Math.Round(avefreq));
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
