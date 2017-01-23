@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,11 +54,12 @@ namespace MultiCoreLoad
         {
             try
             {
-                //if (Screen.PrimaryScreen.WorkingArea.Width > 1920)
-                //{
-                //    GraphWidth = 200;
-                //    GraphHeight = 10;
-                //}
+                float dpi = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics", "AppliedDPI", 96);
+                float scale = dpi / 96;
+                Console.WriteLine($"{dpi}dpi:{(scale * 100)}%");
+
+                GraphWidth = (int)(100 * scale);
+                GraphHeight = (int)(5 * scale);
 
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
