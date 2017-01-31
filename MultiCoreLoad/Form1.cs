@@ -110,8 +110,6 @@ namespace MultiCoreLoad
 
                 Worker.Interval = 500;
                 Worker.Enabled = true;
-
-                GC.Collect();
             }
             catch (Exception ex)
             {
@@ -138,6 +136,7 @@ namespace MultiCoreLoad
                 freq[id] = Cores[id].Freq();
             });
 
+            Console.WriteLine($"{Math.Round(usage.Average())}%");
             double avefreq = freq.Average();
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
@@ -161,8 +160,7 @@ namespace MultiCoreLoad
             TopLevel = true;
             TopMost = true;
 
-            if (WindowState != FormWindowState.Normal ||
-                Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
+            if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
                 Width != GraphWidth ||
                 Top != Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top ||
                 Left != Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left)
@@ -170,7 +168,6 @@ namespace MultiCoreLoad
                 int oldTop = Top;
                 int oldLeft = Left;
 
-                WindowState = FormWindowState.Normal;
                 Height = (GraphHeight + 1) * (CoreCount + usageStartIndex);
                 Width = GraphWidth;
                 Top = Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top;
@@ -178,7 +175,10 @@ namespace MultiCoreLoad
 
                 Console.WriteLine($"{nameof(Top)}:{oldTop}->{Top}");
                 Console.WriteLine($"{nameof(Left)}:{oldLeft}->{Left}");
+
+                GC.Collect();
             }
+
         }
 
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -206,6 +206,22 @@ namespace MultiCoreLoad
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             Activate();
+
+            if (e.Button == MouseButtons.Left)
+            {
+                if (Worker.Enabled)
+                {
+                    Worker.Enabled = false;
+                    Width = 0;
+                    Height = 0;
+
+                    GC.Collect();
+                }
+                else
+                {
+                    Worker.Enabled = true;
+                }
+            }
         }
     }
 }
