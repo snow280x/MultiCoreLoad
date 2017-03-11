@@ -57,19 +57,19 @@
             this.RestartMenuItem,
             this.終了ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 80);
             // 
             // RestartMenuItem
             // 
             this.RestartMenuItem.Name = "RestartMenuItem";
-            this.RestartMenuItem.Size = new System.Drawing.Size(162, 36);
+            this.RestartMenuItem.Size = new System.Drawing.Size(187, 38);
             this.RestartMenuItem.Text = "再起動";
             this.RestartMenuItem.Click += new System.EventHandler(this.RestartMenuItem_Click);
             // 
             // 終了ToolStripMenuItem
             // 
             this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(162, 36);
+            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(187, 38);
             this.終了ToolStripMenuItem.Text = "終了";
             this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
