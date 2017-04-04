@@ -54,13 +54,6 @@ namespace MultiCoreLoad
         {
             try
             {
-                float dpi = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics", "AppliedDPI", 96);
-                float scale = dpi / 96;
-                Console.WriteLine($"{dpi}dpi:{(scale * 100)}%");
-
-                GraphWidth = (int)(100 * scale);
-                GraphHeight = (int)(5 * scale);
-
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
