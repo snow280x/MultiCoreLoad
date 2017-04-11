@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -101,12 +102,12 @@ namespace MultiCoreLoad
 
                 DoWork();
 
-                Worker.Interval = 500;
+                Worker.Interval = 1000 / 4;
                 Worker.Enabled = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Trace.WriteLine(ex);
             }
         }
 
@@ -129,7 +130,6 @@ namespace MultiCoreLoad
                 freq[id] = Cores[id].Freq();
             });
 
-            Console.WriteLine($"{Math.Round(usage.Average())}%");
             double avefreq = freq.Average();
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
@@ -166,20 +166,24 @@ namespace MultiCoreLoad
                 Top = Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top;
                 Left = Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left;
 
-                Console.WriteLine($"{nameof(Top)}:{oldTop}->{Top}");
-                Console.WriteLine($"{nameof(Left)}:{oldLeft}->{Left}");
+                Trace.WriteLine($"{nameof(Top)}:\t{oldTop}\t->\t{Top}");
+                Trace.WriteLine($"{nameof(Left)}:\t{oldLeft}\t->\t{Left}");
 
                 GC.Collect();
             }
 
         }
 
-        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void RestartMenuItem_Click(object sender, EventArgs e)
+        private void ResetMenuItem_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+        private void Reset()
         {
             Worker.Enabled = false;
             Thread.Sleep(100);
@@ -204,6 +208,8 @@ namespace MultiCoreLoad
             {
                 if (Worker.Enabled)
                 {
+                    Trace.WriteLine("Suspended");
+
                     Worker.Enabled = false;
                     Width = 0;
                     Height = 0;
@@ -212,7 +218,8 @@ namespace MultiCoreLoad
                 }
                 else
                 {
-                    Worker.Enabled = true;
+                    Trace.WriteLine("Resumed");
+                    Reset();
                 }
             }
         }

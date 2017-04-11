@@ -33,8 +33,8 @@
             this.Worker = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.RestartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ResetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,24 +54,24 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.RestartMenuItem,
-            this.終了ToolStripMenuItem});
+            this.ResetMenuItem,
+            this.ExitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(245, 120);
             // 
-            // RestartMenuItem
+            // ResetMenuItem
             // 
-            this.RestartMenuItem.Name = "RestartMenuItem";
-            this.RestartMenuItem.Size = new System.Drawing.Size(187, 38);
-            this.RestartMenuItem.Text = "再起動";
-            this.RestartMenuItem.Click += new System.EventHandler(this.RestartMenuItem_Click);
+            this.ResetMenuItem.Name = "ResetMenuItem";
+            this.ResetMenuItem.Size = new System.Drawing.Size(244, 36);
+            this.ResetMenuItem.Text = "Reset";
+            this.ResetMenuItem.Click += new System.EventHandler(this.ResetMenuItem_Click);
             // 
-            // 終了ToolStripMenuItem
+            // ExitToolStripMenuItem
             // 
-            this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(187, 38);
-            this.終了ToolStripMenuItem.Text = "終了";
-            this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
+            this.ExitToolStripMenuItem.Text = "Exit";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -100,8 +100,8 @@
         private System.Windows.Forms.Timer Worker;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 終了ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem RestartMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ResetMenuItem;
     }
 }
 
