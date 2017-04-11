@@ -1,13 +1,7 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -107,7 +101,7 @@ namespace MultiCoreLoad
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex);
+                Debug.WriteLine(ex);
             }
         }
 
@@ -166,8 +160,8 @@ namespace MultiCoreLoad
                 Top = Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top;
                 Left = Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left;
 
-                Trace.WriteLine($"{nameof(Top)}:\t{oldTop}\t->\t{Top}");
-                Trace.WriteLine($"{nameof(Left)}:\t{oldLeft}\t->\t{Left}");
+                Debug.WriteLine($"{nameof(Top)}:\t{oldTop}\t->\t{Top}");
+                Debug.WriteLine($"{nameof(Left)}:\t{oldLeft}\t->\t{Left}");
 
                 GC.Collect();
             }
@@ -208,7 +202,7 @@ namespace MultiCoreLoad
             {
                 if (Worker.Enabled)
                 {
-                    Trace.WriteLine("Suspended");
+                    Debug.WriteLine("Suspended");
 
                     Worker.Enabled = false;
                     Width = 0;
@@ -218,7 +212,7 @@ namespace MultiCoreLoad
                 }
                 else
                 {
-                    Trace.WriteLine("Resumed");
+                    Debug.WriteLine("Resumed");
                     Reset();
                 }
             }
