@@ -23,7 +23,6 @@ namespace MultiCoreLoad
         Color freqFrame = Color.FromArgb(128, 128, 128);
         Color active = Color.FromArgb(64, 255, 0);
         Color park = Color.FromArgb(32, 128, 0);
-        double maxfreq = 100;
 
         public Form1()
         {
@@ -52,7 +51,6 @@ namespace MultiCoreLoad
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
-                maxfreq = 100;
 
                 for (int c = 0; c < CoreCount; c++)
                 {
@@ -98,6 +96,8 @@ namespace MultiCoreLoad
 
                 Worker.Interval = 1000 / 4;
                 Worker.Enabled = true;
+
+                GC.Collect();
             }
             catch (Exception ex)
             {
@@ -130,7 +130,6 @@ namespace MultiCoreLoad
             {
                 if (i == freqIndex)
                 {
-                    maxfreq = Math.Max(maxfreq, avefreq);
                     freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
                     Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
                 }
@@ -144,8 +143,8 @@ namespace MultiCoreLoad
 
         private void LocationSet()
         {
-            TopLevel = true;
             TopMost = true;
+            TopLevel = true;
 
             if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
                 Width != GraphWidth ||
@@ -179,6 +178,8 @@ namespace MultiCoreLoad
         }
         private void Reset()
         {
+            Debug.WriteLine("Resetting");
+
             Worker.Enabled = false;
             Thread.Sleep(100);
 
@@ -202,17 +203,16 @@ namespace MultiCoreLoad
             {
                 if (Worker.Enabled)
                 {
-                    Debug.WriteLine("Suspended");
+                    Debug.WriteLine("Suspending");
 
                     Worker.Enabled = false;
-                    Width = 0;
-                    Height = 0;
-
+                    SetBounds(-Left, -Top, 0, 0);
                     GC.Collect();
                 }
                 else
                 {
-                    Debug.WriteLine("Resumed");
+                    Debug.WriteLine("Resuming");
+
                     Reset();
                 }
             }
