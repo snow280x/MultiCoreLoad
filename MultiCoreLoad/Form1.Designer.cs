@@ -48,18 +48,16 @@
 			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
 			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
 			this.notifyIcon1.Visible = true;
-			this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
 			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.overlayToolStripMenuItem,
-            this.ResetMenuItem,
-            this.ExitToolStripMenuItem});
+			this.overlayToolStripMenuItem,
+			this.ResetMenuItem,
+			this.ExitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(245, 162);
-			this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
 			// 
 			// overlayToolStripMenuItem
 			// 
@@ -104,7 +102,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "MultiCoreLoad";
 			this.TopMost = true;
-			this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);

@@ -148,7 +148,11 @@ namespace MultiCoreLoad
 
 		private void LocationSet()
 		{
-			TopMost = overlayToolStripMenuItem.Checked;
+			if (TopMost != overlayToolStripMenuItem.Checked)
+			{
+				TopMost = overlayToolStripMenuItem.Checked;
+				Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
+			}
 
 			if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
 				Width != GraphWidth ||
@@ -168,7 +172,6 @@ namespace MultiCoreLoad
 
 				GC.Collect();
 			}
-
 		}
 
 		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,25 +206,7 @@ namespace MultiCoreLoad
 		{
 			overlayToolStripMenuItem.Checked = !overlayToolStripMenuItem.Checked;
 			TopMost = overlayToolStripMenuItem.Checked;
-		}
-
-		private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Right)
-			{
-				Worker.Enabled = false;
-				contextMenuStrip1.Show(MousePosition);
-			}
-		}
-
-		private void Form1_Deactivate(object sender, EventArgs e)
-		{
-			Worker.Enabled = true;
-		}
-
-		private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-			Worker.Enabled = true;
+			Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
 		}
 	}
 }
