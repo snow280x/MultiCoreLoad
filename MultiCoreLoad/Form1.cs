@@ -31,6 +31,11 @@ namespace MultiCoreLoad
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			if (Screen.PrimaryScreen.WorkingArea.Width >= 1920)
+			{
+				overlayToolStripMenuItem.Checked = false;
+			}
+
 			init();
 		}
 
@@ -194,33 +199,29 @@ namespace MultiCoreLoad
 			init();
 		}
 
-		private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
-		{
-			Activate();
-
-			if (e.Button == MouseButtons.Left)
-			{
-				if (Worker.Enabled)
-				{
-					Debug.WriteLine("Suspending");
-
-					Worker.Enabled = false;
-					SetBounds(-Left, -Top, 0, 0);
-					GC.Collect();
-				}
-				else
-				{
-					Debug.WriteLine("Resuming");
-
-					Reset();
-				}
-			}
-		}
-
 		private void overlayToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			overlayToolStripMenuItem.Checked = !overlayToolStripMenuItem.Checked;
 			TopMost = overlayToolStripMenuItem.Checked;
+		}
+
+		private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				Worker.Enabled = false;
+				contextMenuStrip1.Show(MousePosition);
+			}
+		}
+
+		private void Form1_Deactivate(object sender, EventArgs e)
+		{
+			Worker.Enabled = true;
+		}
+
+		private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+			Worker.Enabled = true;
 		}
 	}
 }
