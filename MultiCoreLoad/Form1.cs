@@ -141,7 +141,22 @@ namespace MultiCoreLoad
 				else
 				{
 					Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
-					Graphs[i].BackColor = (!parked[i - usageStartIndex]) ? active : park;
+
+					if (parked[i - usageStartIndex])
+					{
+						Graphs[i].BackColor = park;
+					}
+					else
+					{
+						if (usage[i - usageStartIndex] == 100)
+						{
+							Graphs[i].BackColor = boost;
+						}
+						else
+						{
+							Graphs[i].BackColor = active;
+						}
+					}
 				}
 			}
 		}
