@@ -31,11 +31,6 @@ namespace MultiCoreLoad
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			if (Screen.PrimaryScreen.WorkingArea.Width >= 1920)
-			{
-				overlayToolStripMenuItem.Checked = false;
-			}
-
 			init();
 		}
 
@@ -159,15 +154,16 @@ namespace MultiCoreLoad
 					}
 				}
 			}
+
+			if (TopMost != (usage.Max() >= 100 || avefreq >= 100))
+			{
+				TopMost = (usage.Max() >= 100);
+				Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
+			}
 		}
 
 		private void LocationSet()
 		{
-			if (TopMost != overlayToolStripMenuItem.Checked)
-			{
-				TopMost = overlayToolStripMenuItem.Checked;
-				Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
-			}
 
 			if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
 				Width != GraphWidth ||
@@ -215,13 +211,6 @@ namespace MultiCoreLoad
 			Thread.Sleep(100);
 
 			init();
-		}
-
-		private void overlayToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			overlayToolStripMenuItem.Checked = !overlayToolStripMenuItem.Checked;
-			TopMost = overlayToolStripMenuItem.Checked;
-			Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
 		}
 	}
 }

@@ -33,7 +33,6 @@
 			this.Worker = new System.Windows.Forms.Timer(this.components);
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.overlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ResetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip1.SuspendLayout();
@@ -53,32 +52,22 @@
 			// 
 			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.overlayToolStripMenuItem,
-			this.ResetMenuItem,
-			this.ExitToolStripMenuItem});
+            this.ResetMenuItem,
+            this.ExitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(245, 162);
-			// 
-			// overlayToolStripMenuItem
-			// 
-			this.overlayToolStripMenuItem.Checked = true;
-			this.overlayToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.overlayToolStripMenuItem.Name = "overlayToolStripMenuItem";
-			this.overlayToolStripMenuItem.Size = new System.Drawing.Size(244, 38);
-			this.overlayToolStripMenuItem.Text = "Overlay";
-			this.overlayToolStripMenuItem.Click += new System.EventHandler(this.overlayToolStripMenuItem_Click);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(245, 120);
 			// 
 			// ResetMenuItem
 			// 
 			this.ResetMenuItem.Name = "ResetMenuItem";
-			this.ResetMenuItem.Size = new System.Drawing.Size(244, 38);
+			this.ResetMenuItem.Size = new System.Drawing.Size(244, 36);
 			this.ResetMenuItem.Text = "Reset";
 			this.ResetMenuItem.Click += new System.EventHandler(this.ResetMenuItem_Click);
 			// 
 			// ExitToolStripMenuItem
 			// 
 			this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(244, 38);
+			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
 			this.ExitToolStripMenuItem.Text = "Exit";
 			this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
@@ -115,7 +104,6 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem ResetMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem overlayToolStripMenuItem;
 	}
 }
 
