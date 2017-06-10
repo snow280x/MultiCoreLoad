@@ -138,30 +138,13 @@ namespace MultiCoreLoad
 				else
 				{
 					Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
-
-					if (parked[i - usageStartIndex])
-					{
-						Graphs[i].BackColor = park;
-					}
-					else
-					{
-						if (usage[i - usageStartIndex] >= 100)
-						{
-							Graphs[i].BackColor = boost;
-						}
-						else
-						{
-							Graphs[i].BackColor = active;
-						}
-					}
+					Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] >= 100) ? boost : active;
 				}
 			}
 
-			if (TopMost != (usage.Max() >= 100))
-			{
-				TopMost = (usage.Max() >= 100);
-				Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
-			}
+			TopMost = (usage.Max() >= 100) ? true : false;
+
+			if (!TopMost) SendToBack();
 		}
 
 		private void LocationSet()
