@@ -143,7 +143,7 @@ namespace MultiCoreLoad
 					}
 					else
 					{
-						if (usage[i - usageStartIndex] == 100)
+						if (usage[i - usageStartIndex] >= 100)
 						{
 							Graphs[i].BackColor = boost;
 						}
