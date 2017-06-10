@@ -31,7 +31,7 @@ namespace MultiCoreLoad
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			init();
+			Init();
 		}
 
 		protected override CreateParams CreateParams
@@ -44,7 +44,7 @@ namespace MultiCoreLoad
 			}
 		}
 
-		private void init()
+		private void Init()
 		{
 			try
 			{
@@ -59,21 +59,26 @@ namespace MultiCoreLoad
 
 				for (int i = 0; i < CoreCount + usageStartIndex; i++)
 				{
-					PictureBox pic = new PictureBox();
+					PictureBox pic = new PictureBox()
+					{
+						Width = GraphWidth,
+						Height = GraphHeight
+					};
 
-					pic.Width = GraphWidth;
-					pic.Height = GraphHeight;
 					pic.Top = pic.Height * i + i;
 					pic.Left = 0;
 
 					if (i == freqIndex)
 					{
-						freqBackground = new PictureBox();
-						freqBackground.Width = pic.Width;
-						freqBackground.Height = pic.Height;
-						freqBackground.Top = pic.Top;
-						freqBackground.Left = pic.Left;
-						freqBackground.BackColor = normal;
+						freqBackground = new PictureBox()
+						{
+							Width = pic.Width,
+							Height = pic.Height,
+							Top = pic.Top,
+							Left = pic.Left,
+							BackColor = normal
+						};
+
 						pic.BackColor = boost;
 					}
 					else
@@ -94,10 +99,7 @@ namespace MultiCoreLoad
 
 				DoWork();
 
-				Worker.Interval = 1000 / 4;
 				Worker.Enabled = true;
-
-				GC.Collect();
 			}
 			catch (Exception ex)
 			{
@@ -155,7 +157,7 @@ namespace MultiCoreLoad
 				}
 			}
 
-			if (TopMost != (usage.Max() >= 100 || avefreq >= 100))
+			if (TopMost != (usage.Max() >= 100))
 			{
 				TopMost = (usage.Max() >= 100);
 				Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
@@ -180,8 +182,6 @@ namespace MultiCoreLoad
 
 				Debug.WriteLine($"{nameof(Top)}:\t{oldTop}\t->\t{Top}");
 				Debug.WriteLine($"{nameof(Left)}:\t{oldLeft}\t->\t{Left}");
-
-				GC.Collect();
 			}
 		}
 
@@ -197,6 +197,7 @@ namespace MultiCoreLoad
 		private void Reset()
 		{
 			Debug.WriteLine("Resetting");
+			Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
 
 			Worker.Enabled = false;
 			Thread.Sleep(100);
@@ -210,7 +211,7 @@ namespace MultiCoreLoad
 			ResumeLayout(false);
 			Thread.Sleep(100);
 
-			init();
+			Init();
 		}
 	}
 }

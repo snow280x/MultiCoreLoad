@@ -40,6 +40,7 @@
 			// 
 			// Worker
 			// 
+			this.Worker.Interval = 250;
 			this.Worker.Tick += new System.EventHandler(this.Worker_Tick);
 			// 
 			// notifyIcon1
@@ -52,8 +53,8 @@
 			// 
 			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ResetMenuItem,
-            this.ExitToolStripMenuItem});
+			this.ResetMenuItem,
+			this.ExitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(245, 120);
 			// 
