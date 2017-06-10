@@ -142,9 +142,15 @@ namespace MultiCoreLoad
 				}
 			}
 
-			TopMost = (usage.Max() >= 100) ? true : false;
+			if (TopMost != (usage.Max() >= 100))
+			{
+				TopMost = (usage.Max() >= 100);
 
-			if (!TopMost) SendToBack();
+				if (!TopMost)
+				{
+					SendToBack();
+				}
+			}
 		}
 
 		private void LocationSet()
