@@ -141,16 +141,6 @@ namespace MultiCoreLoad
 					Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] >= 100) ? boost : active;
 				}
 			}
-
-			if (TopMost != (usage.Max() >= 100))
-			{
-				TopMost = (usage.Max() >= 100);
-
-				if (!TopMost)
-				{
-					SendToBack();
-				}
-			}
 		}
 
 		private void LocationSet()

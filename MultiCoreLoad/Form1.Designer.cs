@@ -53,22 +53,22 @@
 			// 
 			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.ResetMenuItem,
-			this.ExitToolStripMenuItem});
+            this.ResetMenuItem,
+            this.ExitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(245, 120);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(149, 76);
 			// 
 			// ResetMenuItem
 			// 
 			this.ResetMenuItem.Name = "ResetMenuItem";
-			this.ResetMenuItem.Size = new System.Drawing.Size(244, 36);
+			this.ResetMenuItem.Size = new System.Drawing.Size(148, 36);
 			this.ResetMenuItem.Text = "Reset";
 			this.ResetMenuItem.Click += new System.EventHandler(this.ResetMenuItem_Click);
 			// 
 			// ExitToolStripMenuItem
 			// 
 			this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
+			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(148, 36);
 			this.ExitToolStripMenuItem.Text = "Exit";
 			this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
@@ -91,7 +91,6 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "MultiCoreLoad";
-			this.TopMost = true;
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
