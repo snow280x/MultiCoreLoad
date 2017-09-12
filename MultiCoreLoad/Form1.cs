@@ -8,189 +8,191 @@ using System.Windows.Forms;
 
 namespace MultiCoreLoad
 {
-	public partial class Form1 : Form
-	{
-		const int freqIndex = 0;
-		const int usageStartIndex = freqIndex + 1;
-		int CoreCount;
-		Core[] Cores;
-		PictureBox[] Graphs;
-		PictureBox freqBackground;
-		int GraphWidth = 100;
-		int GraphHeight = 5;
-		Color normal = Color.FromArgb(0, 96, 255);
-		Color boost = Color.FromArgb(255, 32, 32);
-		Color freqFrame = Color.FromArgb(128, 128, 128);
-		Color active = Color.FromArgb(64, 255, 0);
-		Color park = Color.FromArgb(32, 128, 0);
+    public partial class Form1 : Form
+    {
+        const int freqIndex = 0;
+        const int usageStartIndex = freqIndex + 1;
+        int CoreCount;
+        Core[] Cores;
+        PictureBox[] Graphs;
+        PictureBox freqBackground;
+        int GraphWidth = 100;
+        int GraphHeight = 5;
+        Color normal = Color.FromArgb(0, 96, 255);
+        Color boost = Color.FromArgb(255, 32, 32);
+        Color freqFrame = Color.FromArgb(128, 128, 128);
+        Color active = Color.FromArgb(64, 255, 0);
+        Color park = Color.FromArgb(32, 128, 0);
 
-		public Form1()
-		{
-			InitializeComponent();
-		}
+        public Form1()
+        {
+            InitializeComponent();
+        }
 
-		private void Form1_Load(object sender, EventArgs e)
-		{
-			Init();
-		}
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Init();
+        }
 
-		protected override CreateParams CreateParams
-		{
-			get
-			{
-				CreateParams cp = base.CreateParams;
-				cp.ExStyle |= 0x00000020;
-				return cp;
-			}
-		}
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x00000020;
+                return cp;
+            }
+        }
 
-		private void Init()
-		{
-			try
-			{
-				CoreCount = Environment.ProcessorCount;
-				Cores = new Core[CoreCount];
-				Graphs = new PictureBox[CoreCount + 1];
+        private void Init()
+        {
+            try
+            {
+                Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
 
-				for (int c = 0; c < CoreCount; c++)
-				{
-					Cores[c] = new Core(c);
-				}
+                CoreCount = Environment.ProcessorCount;
+                Cores = new Core[CoreCount];
+                Graphs = new PictureBox[CoreCount + 1];
 
-				for (int i = 0; i < CoreCount + usageStartIndex; i++)
-				{
-					PictureBox pic = new PictureBox()
-					{
-						Width = GraphWidth,
-						Height = GraphHeight
-					};
+                for (int c = 0; c < CoreCount; c++)
+                {
+                    Cores[c] = new Core(c);
+                }
 
-					pic.Top = pic.Height * i + i;
-					pic.Left = 0;
+                for (int i = 0; i < CoreCount + usageStartIndex; i++)
+                {
+                    PictureBox pic = new PictureBox()
+                    {
+                        Width = GraphWidth,
+                        Height = GraphHeight
+                    };
 
-					if (i == freqIndex)
-					{
-						freqBackground = new PictureBox()
-						{
-							Width = pic.Width,
-							Height = pic.Height,
-							Top = pic.Top,
-							Left = pic.Left,
-							BackColor = normal
-						};
+                    pic.Top = pic.Height * i + i;
+                    pic.Left = 0;
 
-						pic.BackColor = boost;
-					}
-					else
-					{
-						pic.BackColor = active;
-					}
+                    if (i == freqIndex)
+                    {
+                        freqBackground = new PictureBox()
+                        {
+                            Width = pic.Width,
+                            Height = pic.Height,
+                            Top = pic.Top,
+                            Left = pic.Left,
+                            BackColor = normal
+                        };
 
-					Graphs[i] = pic;
-				}
+                        pic.BackColor = boost;
+                    }
+                    else
+                    {
+                        pic.BackColor = active;
+                    }
 
-				SuspendLayout();
-				Controls.AddRange(Graphs);
-				Controls.Add(freqBackground);
-				ResumeLayout(false);
+                    Graphs[i] = pic;
+                }
 
-				ShowInTaskbar = false;
-				LocationSet();
+                SuspendLayout();
+                Controls.AddRange(Graphs);
+                Controls.Add(freqBackground);
+                ResumeLayout(false);
 
-				DoWork();
+                ShowInTaskbar = false;
+                LocationSet();
 
-				Worker.Enabled = true;
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex);
-			}
-		}
+                DoWork();
 
-		private void Worker_Tick(object sender, EventArgs e)
-		{
-			DoWork();
-			LocationSet();
-		}
+                Worker.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
 
-		private void DoWork()
-		{
-			double[] usage = new double[CoreCount];
-			bool[] parked = new bool[CoreCount];
-			double[] freq = new double[CoreCount];
+        private void Worker_Tick(object sender, EventArgs e)
+        {
+            DoWork();
+            LocationSet();
+        }
 
-			Parallel.For(0, CoreCount, id =>
-			{
-				usage[id] = Cores[id].Load();
-				parked[id] = Cores[id].Parked();
-				freq[id] = Cores[id].Freq();
-			});
+        private void DoWork()
+        {
+            double[] usage = new double[CoreCount];
+            bool[] parked = new bool[CoreCount];
+            double[] freq = new double[CoreCount];
 
-			double avefreq = freq.Average();
+            Parallel.For(0, CoreCount, id =>
+            {
+                usage[id] = Cores[id].Load();
+                parked[id] = Cores[id].Parked();
+                freq[id] = Cores[id].Freq();
+            });
 
-			for (int i = 0; i < CoreCount + usageStartIndex; i++)
-			{
-				if (i == freqIndex)
-				{
-					freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
-					Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
-				}
-				else
-				{
-					Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
-					Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] >= 100) ? boost : active;
-				}
-			}
-		}
+            double avefreq = freq.Average();
 
-		private void LocationSet()
-		{
+            for (int i = 0; i < CoreCount + usageStartIndex; i++)
+            {
+                if (i == freqIndex)
+                {
+                    freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
+                    Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
+                }
+                else
+                {
+                    Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
+                    Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] >= 100) ? boost : active;
+                }
+            }
+        }
 
-			if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
-				Width != GraphWidth ||
-				Top != Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top ||
-				Left != Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left)
-			{
-				int oldTop = Top;
-				int oldLeft = Left;
+        private void LocationSet()
+        {
 
-				Height = (GraphHeight + 1) * (CoreCount + usageStartIndex);
-				Width = GraphWidth;
-				Top = Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top;
-				Left = Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left;
+            if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
+                Width != GraphWidth ||
+                Top != Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top ||
+                Left != Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left)
+            {
+                int oldTop = Top;
+                int oldLeft = Left;
 
-				Debug.WriteLine($"{nameof(Top)}:\t{oldTop}\t->\t{Top}");
-				Debug.WriteLine($"{nameof(Left)}:\t{oldLeft}\t->\t{Left}");
-			}
-		}
+                Height = (GraphHeight + 1) * (CoreCount + usageStartIndex);
+                Width = GraphWidth;
+                Top = Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top;
+                Left = Screen.PrimaryScreen.WorkingArea.Width - Width + Screen.PrimaryScreen.WorkingArea.Left;
 
-		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Close();
-		}
+                Debug.WriteLine($"{nameof(Top)}:\t{oldTop}\t->\t{Top}");
+                Debug.WriteLine($"{nameof(Left)}:\t{oldLeft}\t->\t{Left}");
+            }
+        }
 
-		private void ResetMenuItem_Click(object sender, EventArgs e)
-		{
-			Reset();
-		}
-		private void Reset()
-		{
-			Debug.WriteLine("Resetting");
-			Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
-			Worker.Enabled = false;
-			Thread.Sleep(100);
+        private void ResetMenuItem_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+        private void Reset()
+        {
+            Debug.WriteLine("Resetting");
+            Debug.WriteLine($"{nameof(TopMost)}:{TopMost}");
 
-			SuspendLayout();
-			foreach (Control ctrl in Graphs)
-			{
-				Controls.Remove(ctrl);
-			}
-			Controls.Remove(freqBackground);
-			ResumeLayout(false);
-			Thread.Sleep(100);
+            Worker.Enabled = false;
+            Thread.Sleep(100);
 
-			Init();
-		}
-	}
+            SuspendLayout();
+            foreach (Control ctrl in Graphs)
+            {
+                Controls.Remove(ctrl);
+            }
+            Controls.Remove(freqBackground);
+            ResumeLayout(false);
+            Thread.Sleep(100);
+
+            Init();
+        }
+    }
 }

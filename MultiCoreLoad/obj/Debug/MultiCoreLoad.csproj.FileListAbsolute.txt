@@ -36,3 +36,6 @@ D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Proper
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.GenerateResource.Cache
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.exe
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.pdb
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe.CodeAnalysisLog.xml
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe.lastcodeanalysissucceeded
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.CoreCompileInputs.cache

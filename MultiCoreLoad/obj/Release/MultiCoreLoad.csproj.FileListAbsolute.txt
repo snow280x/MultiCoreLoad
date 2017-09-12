@@ -23,18 +23,21 @@ C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.m
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.application
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe.manifest
 C:\Users\snow\GitHub\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.application
-E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe.config
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.pdb
-E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.exe
-E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Release\MultiCoreLoad.pdb
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Form1.resources
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Properties.Resources.resources
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.GenerateResource.Cache
-E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csprojResolveAssemblyReference.cache
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.config
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.pdb
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.CodeAnalysisLog.xml
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.lastcodeanalysissucceeded
 D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csprojResolveAssemblyReference.cache
+D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.CoreCompileInputs.cache
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.CoreCompileInputs.cache
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.config
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.pdb
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.CodeAnalysisLog.xml
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.lastcodeanalysissucceeded
