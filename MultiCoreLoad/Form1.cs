@@ -101,6 +101,8 @@ namespace MultiCoreLoad
 
                 DoWork();
 
+                GC.Collect();
+
                 Worker.Enabled = true;
             }
             catch (Exception ex)
