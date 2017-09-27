@@ -48,8 +48,6 @@ namespace MultiCoreLoad
         {
             try
             {
-                Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
-
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
@@ -113,7 +111,13 @@ namespace MultiCoreLoad
 
         private void Worker_Tick(object sender, EventArgs e)
         {
+            if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.BelowNormal)
+            {
+                Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.BelowNormal;
+            }
+
             DoWork();
+
             LocationSet();
         }
 
@@ -142,7 +146,7 @@ namespace MultiCoreLoad
                 else
                 {
                     Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
-                    Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] >= 100) ? boost : active;
+                    Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] > 99) ? boost : active;
                 }
             }
         }
