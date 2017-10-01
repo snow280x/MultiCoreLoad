@@ -134,7 +134,7 @@ namespace MultiCoreLoad
             }
             last = now;
 
-            if (error <= 50)
+            if (error <= 10)
             {
                 if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.Idle)
                 {
