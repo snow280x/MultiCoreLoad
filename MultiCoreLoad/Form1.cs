@@ -19,6 +19,7 @@ namespace MultiCoreLoad
         bool[] parked;
         double[] freq;
         double avefreq;
+        bool boosting = false;
 
         PictureBox[] Graphs;
         PictureBox freqBackground;
@@ -134,23 +135,23 @@ namespace MultiCoreLoad
             }
             last = now;
 
-            if (Math.Abs(error) < 10)
-            {
-                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.Idle)
-                {
-                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
-                }
-            }
-            else
+            DoWork();
+            LocationSet();
+
+            if (boosting)
             {
                 if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.High)
                 {
                     Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
                 }
             }
-
-            DoWork();
-            LocationSet();
+            else
+            {
+                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.Idle)
+                {
+                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
+                }
+            }
 
             if (error == 0)
             {
@@ -182,6 +183,8 @@ namespace MultiCoreLoad
                     Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] > 99) ? boost : active;
                 }
             }
+
+            boosting = avefreq > 100;
         }
 
         private void LocationSet()
