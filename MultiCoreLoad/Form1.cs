@@ -12,17 +12,29 @@ namespace MultiCoreLoad
     {
         const int freqIndex = 0;
         const int usageStartIndex = freqIndex + 1;
+
         int CoreCount;
         Core[] Cores;
+        double[] usage;
+        bool[] parked;
+        double[] freq;
+        double avefreq;
+
         PictureBox[] Graphs;
         PictureBox freqBackground;
+
         int GraphWidth = 100;
         int GraphHeight = 5;
+
         Color normal = Color.FromArgb(0, 96, 255);
         Color boost = Color.FromArgb(255, 32, 32);
         Color freqFrame = Color.FromArgb(128, 128, 128);
         Color active = Color.FromArgb(64, 255, 0);
         Color park = Color.FromArgb(32, 128, 0);
+
+        DateTime last;
+        int delay = 0;
+        int error = 0;
 
         public Form1()
         {
@@ -51,6 +63,10 @@ namespace MultiCoreLoad
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
+
+                usage = new double[CoreCount];
+                parked = new bool[CoreCount];
+                freq = new double[CoreCount];
 
                 for (int c = 0; c < CoreCount; c++)
                 {
@@ -99,8 +115,6 @@ namespace MultiCoreLoad
 
                 DoWork();
 
-                GC.Collect();
-
                 Worker.Enabled = true;
             }
             catch (Exception ex)
@@ -111,22 +125,41 @@ namespace MultiCoreLoad
 
         private void Worker_Tick(object sender, EventArgs e)
         {
-            if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.BelowNormal)
+            DateTime now = DateTime.Now;
+            if (last != null)
             {
-                Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.BelowNormal;
+                delay = (int)Math.Round((now - last).TotalMilliseconds);
+                error = Worker.Interval - delay;
+                Debug.WriteLine($"{delay}ms ({error})");
+            }
+            last = now;
+
+            if (error <= 50)
+            {
+                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.Idle)
+                {
+                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
+                }
+            }
+            else
+            {
+                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.High)
+                {
+                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+                }
             }
 
             DoWork();
-
             LocationSet();
+
+            if (error == 0)
+            {
+                GC.Collect();
+            }
         }
 
         private void DoWork()
         {
-            double[] usage = new double[CoreCount];
-            bool[] parked = new bool[CoreCount];
-            double[] freq = new double[CoreCount];
-
             Parallel.For(0, CoreCount, id =>
             {
                 usage[id] = Cores[id].Load();
@@ -134,7 +167,7 @@ namespace MultiCoreLoad
                 freq[id] = Cores[id].Freq();
             });
 
-            double avefreq = freq.Average();
+            avefreq = freq.Average();
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
