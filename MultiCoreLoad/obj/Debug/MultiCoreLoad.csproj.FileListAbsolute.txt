@@ -38,3 +38,4 @@ D:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.pdb
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe.CodeAnalysisLog.xml
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe.lastcodeanalysissucceeded
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.CoreCompileInputs.cache
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csprojResolveAssemblyReference.cache
