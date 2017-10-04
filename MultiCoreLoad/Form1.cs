@@ -117,6 +117,8 @@ namespace MultiCoreLoad
                 DoWork();
 
                 Worker.Enabled = true;
+
+                GC.Collect();
             }
             catch (Exception ex)
             {
@@ -158,7 +160,6 @@ namespace MultiCoreLoad
 
         private void LocationSet()
         {
-
             if (Height != (GraphHeight + 1) * (CoreCount + usageStartIndex) ||
                 Width != GraphWidth ||
                 Top != Screen.PrimaryScreen.WorkingArea.Height - Height + Screen.PrimaryScreen.WorkingArea.Top ||
