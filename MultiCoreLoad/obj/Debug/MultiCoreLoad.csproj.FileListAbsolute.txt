@@ -38,3 +38,4 @@ E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.CoreCompileInputs.cache
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.exe
 E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.pdb
+E:\snow\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csprojResolveAssemblyReference.cache

@@ -19,7 +19,6 @@ namespace MultiCoreLoad
         bool[] parked;
         double[] freq;
         double avefreq;
-        bool boosting = false;
 
         PictureBox[] Graphs;
         PictureBox freqBackground;
@@ -32,10 +31,6 @@ namespace MultiCoreLoad
         Color freqFrame = Color.FromArgb(128, 128, 128);
         Color active = Color.FromArgb(64, 255, 0);
         Color park = Color.FromArgb(32, 128, 0);
-
-        DateTime last;
-        int delay = 0;
-        int error = 0;
 
         public Form1()
         {
@@ -61,6 +56,11 @@ namespace MultiCoreLoad
         {
             try
             {
+                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.BelowNormal)
+                {
+                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.BelowNormal;
+                }
+
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
@@ -126,37 +126,8 @@ namespace MultiCoreLoad
 
         private void Worker_Tick(object sender, EventArgs e)
         {
-            DateTime now = DateTime.Now;
-            if (last != null)
-            {
-                delay = (int)Math.Round((now - last).TotalMilliseconds);
-                error = Worker.Interval - delay;
-                Debug.WriteLine($"{delay}ms ({error})");
-            }
-            last = now;
-
             DoWork();
             LocationSet();
-
-            if (boosting)
-            {
-                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.High)
-                {
-                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-                }
-            }
-            else
-            {
-                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.Idle)
-                {
-                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
-                }
-            }
-
-            if (error == 0)
-            {
-                GC.Collect();
-            }
         }
 
         private void DoWork()
@@ -183,8 +154,6 @@ namespace MultiCoreLoad
                     Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] > 99) ? boost : active;
                 }
             }
-
-            boosting = avefreq > 100;
         }
 
         private void LocationSet()
