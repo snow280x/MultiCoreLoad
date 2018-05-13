@@ -12,13 +12,14 @@ namespace MultiCoreLoad
     {
         const int freqIndex = 0;
         const int usageStartIndex = freqIndex + 1;
+        const ProcessPriorityClass processPriority = ProcessPriorityClass.BelowNormal;
 
         int CoreCount;
         Core[] Cores;
         double[] usage;
         bool[] parked;
         double[] freq;
-        double avefreq;
+        double maxfreq;
 
         PictureBox[] Graphs;
         PictureBox freqBackground;
@@ -56,9 +57,9 @@ namespace MultiCoreLoad
         {
             try
             {
-                if (Process.GetCurrentProcess().PriorityClass != ProcessPriorityClass.BelowNormal)
+                if (Process.GetCurrentProcess().PriorityClass != processPriority)
                 {
-                    Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.BelowNormal;
+                    Process.GetCurrentProcess().PriorityClass = processPriority;
                 }
 
                 CoreCount = Environment.ProcessorCount;
@@ -141,14 +142,15 @@ namespace MultiCoreLoad
                 freq[id] = Cores[id].Freq();
             });
 
-            avefreq = freq.Average();
+            maxfreq = freq.Max();
+
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
                 if (i == freqIndex)
                 {
-                    freqBackground.Width = (avefreq <= 100) ? (int)Math.Round(GraphWidth / 100 * avefreq) : GraphWidth;
-                    Graphs[i].Width = (avefreq > 100) ? (int)Math.Round(GraphWidth / 100 * (avefreq - 100)) : 0;
+                    freqBackground.Width = (maxfreq <= 100) ? (int)Math.Round(GraphWidth / 100 * maxfreq) : GraphWidth;
+                    Graphs[i].Width = (maxfreq > 100) ? (int)Math.Round(GraphWidth / 100 * (maxfreq - 100)) : 0;
                 }
                 else
                 {

@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MultiCoreLoad")]
-[assembly: AssemblyCopyright("Copyright © snow280x 2016")]
+[assembly: AssemblyCopyright("Copyright © snowrx 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
