@@ -13,6 +13,8 @@ namespace MultiCoreLoad
         const int freqIndex = 0;
         const int usageStartIndex = freqIndex + 1;
         const ProcessPriorityClass processPriority = ProcessPriorityClass.Idle;
+        const uint GCtime = 1000;
+        uint GCcount = 0;
 
         int CoreCount;
         Core[] Cores;
@@ -131,6 +133,13 @@ namespace MultiCoreLoad
         {
             DoWork();
             LocationSet();
+
+            GCcount++;
+            if (GCcount >= GCtime)
+            {
+                GCcount = 0;
+                GC.Collect();
+            }
         }
 
         private void DoWork()
