@@ -12,11 +12,11 @@ namespace MultiCoreLoad
         public Core(int index)
         {
             Parking = new PerformanceCounter("Processor Information", "Parking Status", $"0,{index}");
-            Debug.WriteLine($"Parking:{Parking.NextValue()}");
+            Debug.WriteLine($"Core {index} Parking:{Parking.NextValue()}");
             Usage = new PerformanceCounter("Processor Information", "% Processor Time", $"0,{index}");
-            Debug.WriteLine($"Usage:{Usage.NextValue()}");
+            Debug.WriteLine($"Core {index} Usage:{Usage.NextValue()}");
             Freqency = new PerformanceCounter("Processor Information", "% Processor Performance", $"0,{index}");
-            Debug.WriteLine($"Frequency:{Freqency.NextValue()}");
+            Debug.WriteLine($"Core {index} Frequency:{Freqency.NextValue()}");
         }
 
         public bool Parked()
