@@ -12,7 +12,7 @@ namespace MultiCoreLoad
     {
         const int freqIndex = 0;
         const int usageStartIndex = freqIndex + 1;
-        const ProcessPriorityClass processPriority = ProcessPriorityClass.BelowNormal;
+        const ProcessPriorityClass processPriority = ProcessPriorityClass.Idle;
 
         int CoreCount;
         Core[] Cores;
