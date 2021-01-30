@@ -10,29 +10,25 @@ namespace MultiCoreLoad
 {
     public partial class Form1 : Form
     {
-        Random random = new Random();
-        const int freqIndex = 0;
-        const int usageStartIndex = freqIndex + 1;
-        const ProcessPriorityClass processPriority = ProcessPriorityClass.Idle;
-
-        int CoreCount;
-        Core[] Cores;
-        double[] usage;
-        bool[] parked;
-        double[] freq;
-        double maxfreq;
-
-        PictureBox[] Graphs;
-        PictureBox freqBackground;
-
-        int GraphWidth = 100;
-        int GraphHeight = 5;
-
-        Color normal = Color.FromArgb(0, 96, 255);
-        Color boost = Color.FromArgb(255, 32, 32);
-        Color freqFrame = Color.FromArgb(128, 128, 128);
-        Color active = Color.FromArgb(64, 255, 0);
-        Color park = Color.FromArgb(32, 128, 0);
+        private const int freqIndex = 0;
+        private const int usageStartIndex = freqIndex + 1;
+        private const ProcessPriorityClass processPriority = ProcessPriorityClass.Idle;
+        private int CoreCount;
+        private Core[] Cores;
+        private double[] usage;
+        private bool[] parked;
+        private double[] freq;
+        private double maxfreq;
+        private double[] idle;
+        private double[] effective;
+        private PictureBox[] Graphs;
+        private PictureBox freqBackground;
+        private readonly int GraphWidth = 100;
+        private readonly int GraphHeight = 5;
+        private readonly Color normal = Color.Yellow;
+        private readonly Color boost = Color.Red;
+        private readonly Color active = Color.Lime;
+        private readonly Color park = Color.DarkGreen;
 
         public Form1()
         {
@@ -63,6 +59,8 @@ namespace MultiCoreLoad
                     Process.GetCurrentProcess().PriorityClass = processPriority;
                 }
 
+                Opacity = 0.75;
+
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
@@ -70,6 +68,8 @@ namespace MultiCoreLoad
                 usage = new double[CoreCount];
                 parked = new bool[CoreCount];
                 freq = new double[CoreCount];
+                idle = new double[CoreCount];
+                effective = new double[CoreCount];
 
                 for (int c = 0; c < CoreCount; c++)
                 {
@@ -141,22 +141,27 @@ namespace MultiCoreLoad
                 usage[id] = Cores[id].Load();
                 parked[id] = Cores[id].Parked();
                 freq[id] = Cores[id].Freq();
+                idle[id] = Cores[id].Idle();
+                effective[id] = (100 - idle[id]) * freq[id] / 100;
             });
 
             maxfreq = freq.Max();
-
+            if (effectiveClockToolStripMenuItem.Checked)
+            {
+                maxfreq = effective.Max();
+            }
 
             for (int i = 0; i < CoreCount + usageStartIndex; i++)
             {
                 if (i == freqIndex)
                 {
-                    freqBackground.Width = (maxfreq <= 100) ? (int)Math.Round(GraphWidth / 100 * maxfreq) : GraphWidth;
-                    Graphs[i].Width = (maxfreq > 100) ? (int)Math.Round(GraphWidth / 100 * (maxfreq - 100)) : 0;
+                    freqBackground.Width = Math.Min(GraphWidth, (int)Math.Round(GraphWidth / 100 * maxfreq));
+                    Graphs[i].Width = Math.Max(0, (int)Math.Round(GraphWidth / 100 * (maxfreq - 100)));
                 }
                 else
                 {
                     Graphs[i].Width = (int)Math.Round(GraphWidth / 100 * usage[i - usageStartIndex]);
-                    Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] > 99) ? boost : active;
+                    Graphs[i].BackColor = (parked[i - usageStartIndex]) ? park : (usage[i - usageStartIndex] > 99.9) ? boost : active;
                 }
             }
         }
@@ -209,5 +214,15 @@ namespace MultiCoreLoad
 
             Init();
         }
+        private void activeClockToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            effectiveClockToolStripMenuItem.Checked = !activeClockToolStripMenuItem.Checked;
+        }
+
+        private void effectiveClockToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            activeClockToolStripMenuItem.Checked = !effectiveClockToolStripMenuItem.Checked;
+        }
+
     }
 }
