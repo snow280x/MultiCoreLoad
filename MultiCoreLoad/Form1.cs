@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MultiCoreLoad
 {
@@ -25,10 +26,12 @@ namespace MultiCoreLoad
         private PictureBox freqBackground;
         private readonly int GraphWidth = 100;
         private readonly int GraphHeight = 5;
-        private readonly Color normal = Color.Yellow;
+        private readonly Color normal = Color.LightSkyBlue;
         private readonly Color boost = Color.Red;
         private readonly Color active = Color.Lime;
         private readonly Color park = Color.DarkGreen;
+        private string configFile = "config.json";
+        private string execPath = Application.ExecutablePath.Remove(Application.ExecutablePath.LastIndexOf('\\') + 1);
 
         public Form1()
         {
@@ -64,6 +67,9 @@ namespace MultiCoreLoad
                 CoreCount = Environment.ProcessorCount;
                 Cores = new Core[CoreCount];
                 Graphs = new PictureBox[CoreCount + 1];
+
+                ShowInTaskbar = false;
+                LocationSet();
 
                 usage = new double[CoreCount];
                 parked = new bool[CoreCount];
@@ -112,9 +118,6 @@ namespace MultiCoreLoad
                 Controls.AddRange(Graphs);
                 Controls.Add(freqBackground);
                 ResumeLayout(false);
-
-                ShowInTaskbar = false;
-                LocationSet();
 
                 DoWork();
 

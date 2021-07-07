@@ -56,3 +56,14 @@ D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreL
 D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.CoreCompileInputs.cache
 D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.exe
 D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.pdb
+D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csprojAssemblyReference.cache
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe.config
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.exe
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\bin\Debug\MultiCoreLoad.pdb
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.AssemblyReference.cache
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Form1.resources
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.Properties.Resources.resources
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.GenerateResource.cache
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.csproj.CoreCompileInputs.cache
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.exe
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Debug\MultiCoreLoad.pdb

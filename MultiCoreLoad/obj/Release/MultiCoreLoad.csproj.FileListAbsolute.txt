@@ -60,3 +60,12 @@ D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCor
 D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.pdb
 D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe
 D:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.pdb
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Form1.resources
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.Properties.Resources.resources
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.GenerateResource.cache
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.csproj.CoreCompileInputs.cache
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe.config
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.exe
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\obj\Release\MultiCoreLoad.pdb
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.exe
+E:\salsn\Projects\Visual Studio\MultiCoreLoad\MultiCoreLoad\MultiCoreLoad.pdb
